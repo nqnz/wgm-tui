@@ -1,17 +1,19 @@
 mod wg;
 mod qr;
 mod tui;
+mod load_config;
 
 use wg::generate_wg_config;
 use qr::generate_qr_code;
 use tui::start_tui;
+use load_config::load_config; 
 
-fn main() -> std::io::Result<()> {
-    let private_key = "CLIENT_PRIVATE_KEY";
-    let public_key = "SERVER_PUBLIC_KEY";
-    let server_ip = "192.168.1.1";
-    let dns = "8.8.8.8";
-    let allowed_ips = "0.0.0.0/0";
+fn main() -> Result<()> {
+    // Load the config from "config.toml"
+    let config = load_config("config.toml")?;
+    println!("Loaded config: {:?}", config);
+
+    Ok(())
 
     // Start interactive TUI and get user input
     let (client_ip, client_name) = start_tui()?;
@@ -22,7 +24,7 @@ fn main() -> std::io::Result<()> {
     }
 
     // Generate WireGuard config
-    let config = generate_wg_config(&client_name, private_key, public_key, server_ip, dns, allowed_ips);
+    let config = generate_wg_config(cfg: &Config);
 
     // Generate QR code
     generate_qr_code(&config);

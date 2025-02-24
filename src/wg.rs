@@ -1,7 +1,7 @@
 use std::fs::File;
 use std::io::Write;
 
-pub fn generate_wg_config(client_name: &str, private_key: &str, server_public_key: &str, server_ip: &str, dns: &str, allowed_ips: &str) -> String {
+pub fn generate_wg_config(cfg: &Config) -> String {
     let config = format!(
         "[Interface]
 PrivateKey = {private_key}
