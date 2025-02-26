@@ -2,18 +2,18 @@ mod wg;
 mod qr;
 mod tui;
 mod load_config;
+mod config; 
 
 use wg::generate_wg_config;
 use qr::generate_qr_code;
 use tui::start_tui;
-use load_config::load_config; 
+use load_config::load_config;
+use anyhow::{Result};
 
 fn main() -> Result<()> {
     // Load the config from "config.toml"
     let config = load_config("config.toml")?;
     println!("Loaded config: {:?}", config);
-
-    Ok(())
 
     // Start interactive TUI and get user input
     let (client_ip, client_name) = start_tui()?;
@@ -24,7 +24,7 @@ fn main() -> Result<()> {
     }
 
     // Generate WireGuard config
-    let config = generate_wg_config(cfg: &Config);
+    let config = generate_wg_config(&config, &client_name);
 
     // Generate QR code
     generate_qr_code(&config);

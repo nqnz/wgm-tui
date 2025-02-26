@@ -1,6 +1,6 @@
 use ratatui::{backend::CrosstermBackend, Terminal, widgets::{Block, Borders, Paragraph}, layout::{Layout, Constraint, Direction}, text::Span};
 use crossterm::{event::{self, Event, KeyCode}, execute, terminal::*};
-use std::io::{stdout, Write};
+use std::io::{stdout};
 
 pub fn start_tui() -> std::io::Result<(String, String)> {
     let mut stdout = stdout();

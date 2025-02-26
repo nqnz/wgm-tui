@@ -1,13 +1,14 @@
-use anyhow::Result;
+//use anyhow::Result;
 use serde::Deserialize;
-use std::fs;
-use std::path::Path;
-use toml;
+//use std::fs;
+//use std::path::Path;
+//use toml;
 
 #[derive(Debug, Deserialize)]
 pub struct Config {
     pub server_ip: String,
     pub server_port: u16,
+    pub server_private_key: String,
     pub server_public_key: String,
     pub client_private_key: String,
 
