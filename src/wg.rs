@@ -5,7 +5,6 @@ use crate::config::Config;
 pub fn generate_wg_config(cfg: &Config, client_name: &str) -> String {
     let config = format!(
         "[Interface]
-PrivateKey = {server_private_key}
 Address = 10.0.0.2/24
 DNS = {dns}
 
