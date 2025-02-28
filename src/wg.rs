@@ -7,13 +7,15 @@ pub fn generate_wg_config(cfg: &Config, client_name: &str) -> String {
         "[Interface]
 Address = 10.0.0.2/24
 DNS = {dns}
+PrivateKey = {client_private_key}
 
 [Peer]
 PublicKey = {server_public_key}
 Endpoint = {server_ip}:51820
 AllowedIPs = {allowed_ips} 
 PersistentKeepalive = 25",
-        server_private_key = cfg.server_private_key,
+        
+        client_private_key = cfg.client_private_key,
         dns = cfg.dns,
         server_public_key = cfg.server_public_key,
         server_ip = cfg.server_ip,
